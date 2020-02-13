@@ -5,6 +5,10 @@ We provide the source code for OntoLDiff, which can be downloaded from here, and
 
 The input are O1, O2 and a path specifying the location where you want the output to be saved; see the following example (please adjust to your own operating environment, i.e., windows or linux).
 
-O1: file:///C:/Users/XXX/Desktop/snomed_ct/snomed_ct_australian.owl                                                          O2: file:///C:/Users/XXX/Desktop/snomed_ct/snomed_ct_intl_20170731.owl                                                     Path: C:\\Users\\XXX\\Desktop\\snomed_ct 
+O1: file:///C:/Users/XXX/Desktop/snomed_ct/snomed_ct_australian.owl  
+
+O2: file:///C:/Users/XXX/Desktop/snomed_ct/snomed_ct_intl_20170731.owl           
+
+Path: C:\\Users\\XXX\\Desktop\\snomed_ct 
 
 We also provide an executable .jar file in the "executable" folder.
