@@ -1,12 +1,10 @@
 package extractor;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-
-import com.google.common.collect.Sets;
-
 import checkexistence.EChecker;
 import concepts.AtomicConcept;
 import connectives.And;
@@ -118,11 +116,15 @@ public class SubsetExtractor {
 		  formula_list.get(i); if (!Sets.intersection(getConceptsFromFormula(formula),
 		  c_sig).isEmpty()) { c_sig_subset.add(formula); formula_list.remove(i); i--; }
 		  }*/
+		
+		List<Formula> c_sig_subset = formula_list.stream()
+				.filter(formula -> !Collections.disjoint(getConceptsFromFormula(formula), c_sig))
+				.collect(Collectors.toList());
 		 
 
-		List<Formula> c_sig_subset = formula_list.stream()
+		/*List<Formula> c_sig_subset = formula_list.stream()
 				.filter(formula -> !Sets.intersection(getConceptsFromFormula(formula), c_sig).isEmpty())
-				.collect(Collectors.toList());
+				.collect(Collectors.toList());*/
 		
 		formula_list.removeAll(c_sig_subset);
 
@@ -161,10 +163,14 @@ public class SubsetExtractor {
 		 * r_sig).isEmpty()) { r_sig_subset.add(formula); formula_list.remove(i); i--; }
 		 * }
 		 */
-
+		
 		List<Formula> r_sig_subset = formula_list.stream()
-				.filter(formula -> !Sets.intersection(getConceptsFromFormula(formula), r_sig).isEmpty())
+				.filter(formula -> !Collections.disjoint(getRolesFromFormula(formula), r_sig))
 				.collect(Collectors.toList());
+
+		/*List<Formula> r_sig_subset = formula_list.stream()
+				.filter(formula -> !Sets.intersection(getRolesFromFormula(formula), r_sig).isEmpty())
+				.collect(Collectors.toList());*/
 		
 		formula_list.removeAll(r_sig_subset);
 
