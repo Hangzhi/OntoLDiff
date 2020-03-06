@@ -1,5 +1,5 @@
 # How to run
-OntoLDiff is implemented in Java, so before running it, please make sure that you have Java Runtime Environment (JRE) installed on your computer. Please include all dependencies (the above .jar files) in your program when running OntoLDiff
+OntoLDiff is implemented in Java, so before running it, please make sure that you have Java Runtime Environment (JRE) installed on your computer. Please add all dependencies (the above .jar files) in your program when running OntoLDiff
 
 We provide the source code for OntoLDiff, which can be downloaded from here, and compiled and run by typing in command line or with a Java IDE such as Eclipse. The main() method is situated in LDiff.java under the forgetting folder.
 
