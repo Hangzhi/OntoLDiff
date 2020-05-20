@@ -16,10 +16,10 @@ import connectives.Inclusion;
 import connectives.Negation;
 import connectives.Or;
 import individual.Individual;
-import preprocessing.PreProcessor;
 import roles.AtomicRole;
 import roles.BottomRole;
 import roles.TopRole;
+import simplification.Simplifier;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -137,7 +137,7 @@ public class Formula {
 	
 	public boolean negationComplement(Formula formula) {
 
-		PreProcessor pp = new PreProcessor();
+		Simplifier pp = new Simplifier();
 
 		Formula formula1 = pp.removeDoubleNegations(this);
 		Formula formula2 = pp.removeDoubleNegations(formula);

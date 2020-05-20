@@ -17,7 +17,7 @@ import org.semanticweb.owlapi.io.OWLXMLOntologyFormat;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 
-import converter.BackConverter;
+import convertion.BackConverter;
 import formula.Formula;
 
 public class SaveButtonListener implements ActionListener {
@@ -25,7 +25,7 @@ public class SaveButtonListener implements ActionListener {
 
 	@SuppressWarnings("unchecked")
 	public SaveButtonListener() {
-		j_result_list = (JList<Formula>) R.getInstance().getObject("result_list");
+		j_result_list = (JList<Formula>) Register.getInstance().getObject("result_list");
 	}
 
 	private SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");

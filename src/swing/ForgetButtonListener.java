@@ -17,7 +17,7 @@ import org.semanticweb.owlapi.model.OWLOntologyLoaderConfiguration;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 
 import concepts.AtomicConcept;
-import converter.Converter;
+import convertion.Converter;
 import forgetting.Fame;
 import formula.Formula;
 import roles.AtomicRole;
@@ -31,10 +31,10 @@ public class ForgetButtonListener implements ActionListener {
 
 	@SuppressWarnings("unchecked")
 	public ForgetButtonListener() {
-		Jrole_list = (JList<AtomicRole>) R.getInstance().getObject("role_list");
-		Jconcept_list = (JList<AtomicConcept>) R.getInstance().getObject("concept_list");
+		Jrole_list = (JList<AtomicRole>) Register.getInstance().getObject("role_list");
+		Jconcept_list = (JList<AtomicConcept>) Register.getInstance().getObject("concept_list");
 		// Jformula_list = (JList<Formula>) R.getInstance().getObject("formula_list");
-		Jresult_list = (JList<Formula>) R.getInstance().getObject("result_list");
+		Jresult_list = (JList<Formula>) Register.getInstance().getObject("result_list");
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
@@ -60,21 +60,21 @@ public class ForgetButtonListener implements ActionListener {
 		SentenceListModel result_model = (SentenceListModel) Jresult_list.getModel();
 
 		List<Formula> result_list = result_model.getListData();
-
-		Set<AtomicRole> r_sig = new HashSet<>();
-
-		int i = indices_1.length;
-
-		while (i-- > 0) {
-			r_sig.add(role_list.get(indices_1[i]));
-		}
 		
 		Set<AtomicConcept> c_sig = new HashSet<>();
 
-		int j = indices_2.length;
+		int i = indices_2.length;
+
+		while (i-- > 0) {
+			c_sig.add(concept_list.get(indices_2[i]));
+		}
+
+		Set<AtomicRole> r_sig = new HashSet<>();
+
+		int j = indices_1.length;
 
 		while (j-- > 0) {
-			c_sig.add(concept_list.get(indices_2[j]));
+			r_sig.add(role_list.get(indices_1[j]));
 		}
 
 		Fame fame = new Fame();
@@ -93,7 +93,7 @@ public class ForgetButtonListener implements ActionListener {
 			ontology = manager.loadOntologyFromOntologyDocument(new IRIDocumentSource(iri),
 					new OWLOntologyLoaderConfiguration().setLoadAnnotationAxioms(true));
 			formula_list = ct.OntologyConverter_ShortForm(ontology);
-			result_list = fame.FameRC(r_sig, c_sig, formula_list);
+			result_list = fame.FameCR(c_sig, r_sig, formula_list);
 			long endTime = System.currentTimeMillis();
 			System.out.println("Duration = " + (endTime - startTime) + "millis");
 		} catch (Exception e) {
